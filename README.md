@@ -126,6 +126,7 @@ Tambahkan environment variable berikut di Vercel untuk semua environment yang ak
 | `APP_URL` | URL publik aplikasi, misalnya `https://contoh.vercel.app`. |
 | `DB_CONNECTION` | `mysql`. |
 | `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD` | Kredensial database MySQL yang dapat diakses dari Vercel. |
+| `MYSQL_ATTR_SSL_CA` | Untuk TiDB Cloud pada image Alpine, gunakan `/etc/ssl/cert.pem`. Hapus nilai path Linux lain seperti `/etc/pki/tls/certs/ca-bundle.crt`. Image menyediakan CA bundle sistem. |
 | `FILESYSTEM_DISK` | `s3`. |
 | `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_DEFAULT_REGION`, `AWS_BUCKET`, `AWS_URL` | Kredensial bucket S3 yang dapat diakses publik untuk foto dan berkas unggahan. Isi `AWS_ENDPOINT` bila memakai layanan S3 kompatibel seperti R2. |
 
