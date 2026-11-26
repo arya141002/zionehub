@@ -112,3 +112,28 @@ Jalankan rangkaian pengujian dengan:
 php artisan test
 ```
 
+## Deploy ke Vercel
+
+Proyek ini menggunakan Dockerfile dengan FrankenPHP untuk dijalankan sebagai Vercel Container Function. Di pengaturan proyek Vercel, gunakan preset **Container**. Jika proyek sudah terhubung ke preset lain, ubah framework preset ke Container sebelum deploy. `vercel.json` lama untuk runtime PHP komunitas tidak digunakan.
+
+File `.env` hanya digunakan untuk pengembangan lokal dan tidak disalin ke Docker image. Nilai lokal seperti `APP_ENV=local`, `APP_DEBUG=true`, `APP_URL=http://127.0.0.1:8000`, database Laragon, dan `FILESYSTEM_DISK=local` tetap sesuai untuk pengembangan; jangan ubah file lokal menjadi konfigurasi produksi. Buat application key produksi tersendiri dengan `php artisan key:generate --show`, lalu simpan hasilnya sebagai `APP_KEY` di Vercel, bukan di repository.
+
+Tambahkan environment variable berikut di Vercel untuk semua environment yang akan dipakai:
+
+| Variable | Nilai |
+| --- | --- |
+| `APP_KEY` | Application key Laravel yang sama untuk deployment terkait. |
+| `APP_URL` | URL publik aplikasi, misalnya `https://contoh.vercel.app`. |
+| `DB_CONNECTION` | `mysql`. |
+| `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD` | Kredensial database MySQL yang dapat diakses dari Vercel. |
+| `FILESYSTEM_DISK` | `s3`. |
+| `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_DEFAULT_REGION`, `AWS_BUCKET`, `AWS_URL` | Kredensial bucket S3 yang dapat diakses publik untuk foto dan berkas unggahan. Isi `AWS_ENDPOINT` bila memakai layanan S3 kompatibel seperti R2. |
+
+Database SQLite dan berkas lokal tidak cocok untuk penyimpanan produksi di Vercel karena filesystem container tidak persisten dan tidak dibagi antar-instance. Setelah environment variable tersedia, jalankan migrasi ke database produksi dari lingkungan yang dapat terhubung ke database:
+
+```bash
+php artisan migrate --force
+```
+
+Deploy dari Git integration Vercel atau jalankan `vercel deploy --prod`. Setelah deploy, buat akun admin dengan `php artisan make:filament-user` dari lingkungan yang memiliki konfigurasi produksi dan koneksi ke database yang sama. Jangan jalankan migrasi atau membuat akun saat Docker image sedang dibangun.
+

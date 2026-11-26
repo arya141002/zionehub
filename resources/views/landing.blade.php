@@ -42,7 +42,7 @@
     <title>{{ $site->meta_title ?: $site->site_name }}</title>
     <meta name="description" content="{{ $site->meta_description }}" />
     @if ($site->favicon)
-    <link rel="icon" href="{{ asset('storage/'.$site->favicon) }}" />
+    <link rel="icon" href="{{ \Illuminate\Support\Facades\Storage::url($site->favicon) }}" />
     @endif
     <link rel="stylesheet" href="{{ asset('assets/swiper-bundle.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/newcss.css') }}" />
@@ -152,7 +152,7 @@
                       129.362C2.45775 97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 
                      -0.149132 97.9666 0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z"
                   />
-                  <image class="home__blob-img" x="-79" y="-46" xlink:href="{{ $profile?->photo ? asset('storage/'.$profile->photo) : asset('assets/img/Pro.jpg') }}" />
+                  <image class="home__blob-img" x="-79" y="-46" xlink:href="{{ $profile?->photo ? \Illuminate\Support\Facades\Storage::url($profile->photo) : asset('assets/img/Pro.jpg') }}" />
                 </g>
               </svg>
             </div>
@@ -184,7 +184,7 @@
 
         <div class="about__container container grid">
             @if ($profile?->photo)
-                <img src="{{ asset('storage/'.$profile->photo) }}" alt="{{ $profile->name }}" class="about__img" />
+                <img src="{{ \Illuminate\Support\Facades\Storage::url($profile->photo) }}" alt="{{ $profile->name }}" class="about__img" />
             @endif
 
             <div class="about__data">
@@ -192,7 +192,7 @@
 
                 @if ($profile?->cv_file)
                 <div class="about__buttons">
-                    <a download href="{{ asset('storage/'.$profile->cv_file) }}" class="button button--flex">
+                    <a download href="{{ \Illuminate\Support\Facades\Storage::url($profile->cv_file) }}" class="button button--flex">
                     Download CV <i class="uil uil-download-alt button__icon"></i>
                     </a>
                 </div>
@@ -283,7 +283,7 @@
                 @foreach ($projects as $project)
                     <div class="portfolio__content grid swiper-slide">
                     @if ($project->thumbnail)
-                        <img src="{{ asset('storage/'.$project->thumbnail) }}" alt="{{ $project->title }}" class="portfolio__img" />
+                        <img src="{{ \Illuminate\Support\Facades\Storage::url($project->thumbnail) }}" alt="{{ $project->title }}" class="portfolio__img" />
                     @endif
 
                     <div class="portfolio__data">
@@ -325,7 +325,7 @@
                 <div class="certificates__card">
                     @if ($cert->image)
                     <img
-                        src="{{ asset('storage/'.$cert->image) }}"
+                        src="{{ \Illuminate\Support\Facades\Storage::url($cert->image) }}"
                         alt="{{ $cert->title }}"
                         class="certificates__img"
                     />
@@ -374,7 +374,7 @@
                     <article class="blog__card">
                     @if ($article->thumbnail)
                         <img
-                        src="{{ asset('storage/'.$article->thumbnail) }}"
+                        src="{{ \Illuminate\Support\Facades\Storage::url($article->thumbnail) }}"
                         alt="{{ $article->title }}"
                         class="blog__img"
                         />

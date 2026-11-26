@@ -20,8 +20,8 @@
 
         <title>{{ $site->meta_title ?: $site->site_name }}</title>
         <meta name="description" content="{{ $site->meta_description }}">
-        <meta property="og:image" content="{{ $site->og_image ? asset('storage/'.$site->og_image) : '' }}">
-        <link rel="icon" href="{{ $site->favicon ? asset('storage/'.$site->favicon) : '' }}">
+        <meta property="og:image" content="{{ $site->og_image ? \Illuminate\Support\Facades\Storage::url($site->og_image) : '' }}">
+        <link rel="icon" href="{{ $site->favicon ? \Illuminate\Support\Facades\Storage::url($site->favicon) : '' }}">
     </head>
     <body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] flex p-6 lg:p-8 items-center lg:justify-center min-h-screen flex-col">
         <header class="w-full lg:max-w-4xl max-w-[335px] text-sm mb-6 not-has-[nav]:hidden">

@@ -14,7 +14,7 @@
     <title>{{ $post->title }} — {{ $site->site_name }}</title>
     <meta name="description" content="{{ $post->excerpt ?: \Illuminate\Support\Str::limit(strip_tags($post->content), 160) }}" />
     @if ($site->favicon)
-      <link rel="icon" href="{{ asset('storage/'.$site->favicon) }}" />
+      <link rel="icon" href="{{ \Illuminate\Support\Facades\Storage::url($site->favicon) }}" />
     @endif
     <link rel="stylesheet" href="{{ asset('assets/newcss.css') }}" />
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css" />
@@ -62,7 +62,7 @@
           <h1 class="article-detail__title">{{ $post->title }}</h1>
 
           @if ($post->thumbnail)
-            <img src="{{ asset('storage/'.$post->thumbnail) }}" alt="{{ $post->title }}" class="article-detail__thumb" />
+            <img src="{{ \Illuminate\Support\Facades\Storage::url($post->thumbnail) }}" alt="{{ $post->title }}" class="article-detail__thumb" />
           @endif
 
           <div class="article-detail__content">
