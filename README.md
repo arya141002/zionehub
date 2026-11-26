@@ -128,6 +128,7 @@ Tambahkan environment variable berikut di Vercel untuk semua environment yang ak
 | `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD` | Kredensial database MySQL yang dapat diakses dari Vercel. |
 | `MYSQL_ATTR_SSL_CA` | Untuk TiDB Cloud pada image Alpine, gunakan `/etc/ssl/cert.pem`. Hapus nilai path Linux lain seperti `/etc/pki/tls/certs/ca-bundle.crt`. Image menyediakan CA bundle sistem. |
 | `FILESYSTEM_DISK` | `s3`. |
+| `FILAMENT_FILESYSTEM_DISK` | `s3`, supaya unggahan dari panel admin masuk ke bucket yang sama. |
 | `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_DEFAULT_REGION`, `AWS_BUCKET`, `AWS_URL` | Kredensial bucket S3 yang dapat diakses publik untuk foto dan berkas unggahan. Isi `AWS_ENDPOINT` bila memakai layanan S3 kompatibel seperti R2. |
 
 Database SQLite dan berkas lokal tidak cocok untuk penyimpanan produksi di Vercel karena filesystem container tidak persisten dan tidak dibagi antar-instance. Setelah environment variable tersedia, jalankan migrasi ke database produksi dari lingkungan yang dapat terhubung ke database:

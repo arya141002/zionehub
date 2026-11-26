@@ -38,6 +38,7 @@ ENV APP_ENV=production \
     QUEUE_CONNECTION=sync \
     DB_CONNECTION=mysql \
     FILESYSTEM_DISK=s3 \
+    FILAMENT_FILESYSTEM_DISK=s3 \
     MYSQL_ATTR_SSL_CA=/etc/ssl/cert.pem \
     PORT=80
 
