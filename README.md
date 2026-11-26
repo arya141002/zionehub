@@ -1,4 +1,4 @@
-# ZioneHub
+﻿# ZioneHub
 
 ZioneHub adalah website portofolio pribadi berbasis Laravel. Pengunjung dapat melihat profil, keahlian, pendidikan, pengalaman, proyek, sertifikat, testimoni, dan artikel. Konten dikelola melalui panel admin Filament.
 
@@ -114,7 +114,7 @@ php artisan test
 
 ## Deploy ke Vercel
 
-Proyek ini menggunakan Dockerfile dengan FrankenPHP untuk dijalankan sebagai Vercel Container Function. Di pengaturan proyek Vercel, gunakan preset **Container**. Jika proyek sudah terhubung ke preset lain, ubah framework preset ke Container sebelum deploy. `vercel.json` lama untuk runtime PHP komunitas tidak digunakan.
+Proyek ini menggunakan `Dockerfile.vercel` dengan FrankenPHP untuk dijalankan sebagai Vercel Container Function. Di pengaturan proyek Vercel, gunakan preset **Container**. Jika proyek sudah terhubung ke preset lain, ubah framework preset ke Container sebelum deploy. `vercel.json` lama untuk runtime PHP komunitas tidak digunakan.
 
 File `.env` hanya digunakan untuk pengembangan lokal dan tidak disalin ke Docker image. Nilai lokal seperti `APP_ENV=local`, `APP_DEBUG=true`, `APP_URL=http://127.0.0.1:8000`, database Laragon, dan `FILESYSTEM_DISK=local` tetap sesuai untuk pengembangan; jangan ubah file lokal menjadi konfigurasi produksi. Buat application key produksi tersendiri dengan `php artisan key:generate --show`, lalu simpan hasilnya sebagai `APP_KEY` di Vercel, bukan di repository.
 
